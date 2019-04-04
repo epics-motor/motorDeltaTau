@@ -5,6 +5,9 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
 
+# The following are used for debugging messages.
+#!USR_CXXFLAGS += -DDEBUG
+
 #=============================
 # Build the IOC application
 
@@ -16,10 +19,21 @@ DBD += deltaTau.dbd
 deltaTau_DBD += base.dbd
 
 # Include dbd files from all support applications:
-#deltaTau_DBD += xxx.dbd
+#ifdef ASYN
+deltaTau_DBD += asyn.dbd
+#endif
+deltaTau_DBD += motorSupport.dbd
+deltaTau_DBD += devDeltaTau.dbd
 
 # Add all the support libraries needed by this IOC
-#deltaTau_LIBS += xxx
+deltaTau_LIBS += deltaTau
+deltaTau_LIBS += motor
+#ifdef ASYN
+deltaTau_LIBS += asyn
+#endif
+#ifdef SNCSEQ
+deltaTau_LIBS += seq pv
+#endif
 
 # deltaTau_registerRecordDeviceDriver.cpp derives from deltaTau.dbd
 deltaTau_SRCS += deltaTau_registerRecordDeviceDriver.cpp
