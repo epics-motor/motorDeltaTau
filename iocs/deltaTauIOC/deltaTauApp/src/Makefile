@@ -23,10 +23,10 @@ deltaTau_DBD += base.dbd
 deltaTau_DBD += asyn.dbd
 #endif
 deltaTau_DBD += motorSupport.dbd
-deltaTau_DBD += devDeltaTau.dbd
+deltaTau_DBD_vxWorks += devDeltaTau.dbd
 
 # Add all the support libraries needed by this IOC
-deltaTau_LIBS += deltaTau
+deltaTau_LIBS_vxWorks += DeltaTau
 deltaTau_LIBS += motor
 #ifdef ASYN
 deltaTau_LIBS += asyn

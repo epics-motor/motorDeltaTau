@@ -1,0 +1,14 @@
+file "$(MOTOR)/db/motor.db"
+{
+pattern
+{P,          N,  M,        DTYP,    C,  S,  DESC,          EGU,      DIR,  VELO,  VBAS,  ACCL,  BDST,  BVEL,  BACC,  MRES,  PREC,  DHLM,  DLLM,  INIT}
+{deltaTau:,  1,  "m$(N)",  "PMAC",  0,  0,  "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  ""}
+{deltaTau:,  2,  "m$(N)",  "PMAC",  0,  1,  "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  ""}
+{deltaTau:,  3,  "m$(N)",  "PMAC",  0,  2,  "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  ""}
+{deltaTau:,  4,  "m$(N)",  "PMAC",  0,  3,  "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  ""}
+{deltaTau:,  5,  "m$(N)",  "PMAC",  0,  4,  "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  ""}
+{deltaTau:,  6,  "m$(N)",  "PMAC",  0,  5,  "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  ""}
+{deltaTau:,  7,  "m$(N)",  "PMAC",  0,  6,  "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  ""}
+{deltaTau:,  8,  "m$(N)",  "PMAC",  0,  7,  "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  ""}
+{deltaTau:,  9,  "m$(N)",  "PMAC",  0,  8,  "motor $(N)",  degrees,  Pos,  1,     .1,    .2,    0,     1,     .2,    0.01,  5,     100,   -100,  ""}
+}
