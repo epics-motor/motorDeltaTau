@@ -102,7 +102,7 @@ static char *Pmac_addrs = 0x0;	/* Base address of DPRAM. */
 static epicsAddressType Pmac_ADDRS_TYPE;
 static volatile unsigned PmacInterruptVector = 0;
 static volatile epicsUInt8 PmacInterruptLevel = Pmac_INT_LEVEL;
-static char *Pmac_axis[] =
+static const char *Pmac_axis[] =
     {"1",  "2",  "3",  "4",  "5",  "6",  "7",  "8",  "9", "10",
     "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
     "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
@@ -117,7 +117,7 @@ static long report(int);
 static long init();
 static void query_done(int, int, struct mess_node *);
 static int set_status(int, int);
-static RTN_STATUS send_mess(int, char const *, char *);
+static RTN_STATUS send_mess(int, const char *, const char *);
 static int recv_mess(int, char *, int);
 static void motorIsr(int);
 static int motor_init();
@@ -271,7 +271,7 @@ static int set_status(int card, int signal)
     status.Bits.EA_HOME	      = 0;
 
     sprintf(outbuf, "M%.2d62", (signal + 1));
-    send_mess(card, outbuf, (char*) NULL);	// Get Actual Position.
+    send_mess(card, outbuf, NULL);	// Get Actual Position.
     recv_mess(card, buff, 1);
     motorData = atof(buff);
     motor_info->encoder_position = (int32_t) motorData;
@@ -294,7 +294,7 @@ static int set_status(int card, int signal)
 	nodeptr->postmsgptr != 0)
     {
 	strcpy(buff, nodeptr->postmsgptr);
-	send_mess(card, buff, (char*) NULL);
+	send_mess(card, buff, NULL);
 	nodeptr->postmsgptr = NULL;
     }
 
@@ -307,7 +307,7 @@ static int set_status(int card, int signal)
 /* send a message to the Pmac board		     */
 /*		send_mess()			     */
 /*****************************************************/
-static RTN_STATUS send_mess(int card, char const *com, char *name)
+static RTN_STATUS send_mess(int card, const char *com, const char *name)
 {
     char outbuf[MAX_MSG_SIZE];
     RTN_STATUS return_code;
@@ -835,10 +835,10 @@ static int motor_init()
                 count = pmotor->response[0];
             }
 
-	    send_mess(card_index, "TYPE", (char*) NULL);
+	    send_mess(card_index, "TYPE", NULL);
 	    recv_mess(card_index, (char *) pmotorState->ident, 1);
 
-	    send_mess(card_index, "VERSION", (char*) NULL);
+	    send_mess(card_index, "VERSION", NULL);
 	    recv_mess(card_index, axis_pos, 1);
 	    strcat((char *) &pmotorState->ident, ", ");
 	    strcat((char *) &pmotorState->ident, axis_pos);
@@ -851,7 +851,7 @@ static int motor_init()
 		char outbuf[10];
 
 		sprintf(outbuf, "I%.2d00", (total_axis + 1));
-		send_mess(card_index, outbuf, (char*) NULL);
+		send_mess(card_index, outbuf, NULL);
 		recv_mess(card_index, axis_pos, 1);
 		if (strcmp(axis_pos, "0") == 0)
 		    errind = true;
@@ -862,12 +862,12 @@ static int motor_init()
 
 		    // Set Ixx20=1 and Ixx21=0; control acceleration via Ixx19.
 		    sprintf(outbuf, "I%.2d20=1", (total_axis + 1));
-		    send_mess(card_index, outbuf, (char*) NULL);
+		    send_mess(card_index, outbuf, NULL);
 		    sprintf(outbuf, "I%.2d21=0", (total_axis + 1));
-		    send_mess(card_index, outbuf, (char*) NULL);
+		    send_mess(card_index, outbuf, NULL);
 
 		    sprintf(outbuf, "I%.2d08", (total_axis + 1));
-		    send_mess(card_index, outbuf, (char*) NULL);
+		    send_mess(card_index, outbuf, NULL);
 		    recv_mess(card_index, axis_pos, 1);
 		    cntrl->pos_scaleFac[total_axis] = atof(axis_pos) * 32.0;
 		}
