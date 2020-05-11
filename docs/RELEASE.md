@@ -1,5 +1,20 @@
 # motorDeltaTau Releases
 
+## __R1-0-1 (2020-05-11)__
+R1-0-1 is a release based on the master branch.  
+
+### Changes since R1-0
+
+#### New features
+* None
+
+#### Modifications to existing features
+* None
+
+#### Bug fixes
+* Commit [ab27eae](https://github.com/epics-motor/motorDeltaTau/commit/ab27eae3eb3f81b81ec23204448189bac9440ddf): Include ``$(MOTOR)/modules/RELEASE.$(EPICS_HOST_ARCH).local`` instead of ``$(MOTOR)/configure/RELEASE``
+* Commit [2a03146](https://github.com/epics-motor/motorDeltaTau/commit/2a0314673bb0250b16361842a3d3680d5d2992dd): Fix for VxWorks build errors caused by changes to common motor driver code
+
 ## __R1-0 (2019-04-18)__
 R1-0 is a release based on the master branch.  
 
